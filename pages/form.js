@@ -47,7 +47,7 @@ export default function Form() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-hablalo_black">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-4 p-8 bg-white shadow-md rounded-lg w-full max-w-sm"
