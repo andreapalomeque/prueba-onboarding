@@ -7,6 +7,7 @@ export default function Form() {
     apellido: "",
     email: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -18,7 +19,9 @@ export default function Form() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
+      setIsLoading(true);
       const response = await fetch("/api/submitForm", {
         method: "POST",
         headers: {
@@ -28,14 +31,17 @@ export default function Form() {
       });
 
       if (response.ok) {
+        setIsLoading(false);
         console.log("Document successfully written!");
         const { id } = await response.json();
         console.log("Document ID: ", id);
         router.push("/");
       } else {
+        setIsLoading(false);
         throw new Error("Failed to submit form");
       }
     } catch (error) {
+      setIsLoading(false);
       console.error("Error submitting form: ", error);
     }
   };
@@ -86,8 +92,9 @@ export default function Form() {
         <button
           type="submit"
           className="mt-6 p-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300"
+          disabled={isLoading}
         >
-          Guardar
+          {isLoading ? "Processing..." : "Guardar"}
         </button>
       </form>
     </div>
