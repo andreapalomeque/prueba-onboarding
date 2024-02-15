@@ -57,7 +57,7 @@ export default function Form() {
           value={formData.nombre}
           onChange={handleChange}
           required
-          className="p-2 border border-gray-300 rounded"
+          className="p-2 border border-gray-300 rounded text-black"
         />
         <label htmlFor="apellido" className="font-semibold text-black">
           Apellido
@@ -69,7 +69,7 @@ export default function Form() {
           value={formData.apellido}
           onChange={handleChange}
           required
-          className="p-2 border border-gray-300 rounded"
+          className="p-2 border border-gray-300 rounded text-black"
         />
         <label htmlFor="email" className="font-semibold text-black">
           Email
@@ -81,7 +81,7 @@ export default function Form() {
           value={formData.email}
           onChange={handleChange}
           required
-          className="p-2 border border-gray-300 rounded"
+          className="p-2 border border-gray-300 rounded text-black"
         />
         <button
           type="submit"
