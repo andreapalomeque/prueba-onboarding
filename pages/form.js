@@ -41,7 +41,16 @@ export default function Form() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+        width: "300px",
+        margin: "auto",
+      }}
+    >
       {/* Form fields */}
       <label htmlFor="nombre">Nombre</label>
       <input
@@ -51,6 +60,11 @@ export default function Form() {
         value={formData.nombre}
         onChange={handleChange}
         required
+        style={{
+          padding: "0.5rem",
+          border: "1px solid #ccc",
+          borderRadius: "4px",
+        }}
       />
       <label htmlFor="apellido">Apellido</label>
       <input
@@ -60,6 +74,11 @@ export default function Form() {
         value={formData.apellido}
         onChange={handleChange}
         required
+        style={{
+          padding: "0.5rem",
+          border: "1px solid #ccc",
+          borderRadius: "4px",
+        }}
       />
       <label htmlFor="email">Email</label>
       <input
@@ -69,8 +88,25 @@ export default function Form() {
         value={formData.email}
         onChange={handleChange}
         required
+        style={{
+          padding: "0.5rem",
+          border: "1px solid #ccc",
+          borderRadius: "4px",
+        }}
       />
-      <button type="submit">Save</button>
+      <button
+        type="submit"
+        style={{
+          padding: "0.5rem",
+          backgroundColor: "blue",
+          color: "white",
+          border: "none",
+          cursor: "pointer",
+          borderRadius: "4px",
+        }}
+      >
+        Guardar
+      </button>
     </form>
   );
 }
