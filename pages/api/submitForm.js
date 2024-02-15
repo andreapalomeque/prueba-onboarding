@@ -25,7 +25,7 @@ if (!admin.apps.length) {
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const data = req.body; // Data sent from the form
+      const data = req.body; // data enviada desde el json (cliente)
       const docRef = await admin
         .firestore()
         .collection("pruebaOnboarding")
@@ -36,7 +36,7 @@ export default async function handler(req, res) {
       res.status(500).json({ error: "Failed to save document" });
     }
   } else {
-    // Handle any non-POST requests
+    //no permitir otros metodos
     res.setHeader("Allow", ["POST"]);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }

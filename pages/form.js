@@ -31,7 +31,7 @@ export default function Form() {
         console.log("Document successfully written!");
         const { id } = await response.json();
         console.log("Document ID: ", id);
-        router.push("/"); // Navigate to landing page or a success page
+        router.push("/");
       } else {
         throw new Error("Failed to submit form");
       }
