@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import SubmitButton from "../components/SubmitButton";
 
 export default function Form() {
   const [formData, setFormData] = useState({
@@ -89,13 +90,12 @@ export default function Form() {
           required
           className="p-2 border border-gray-300 rounded text-black"
         />
-        <button
-          type="submit"
-          className="mt-6 p-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300"
-          disabled={isLoading}
-        >
-          {isLoading ? "Processing..." : "Guardar"}
-        </button>
+        <SubmitButton
+          isLoading={isLoading}
+          text={"Guardar"}
+          loadingText={"Processing..."}
+          onClick={handleSubmit}
+        />
       </form>
     </div>
   );
