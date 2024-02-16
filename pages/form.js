@@ -1,28 +1,25 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import SubmitButton from "../components/SubmitButton";
+//react-redux
+import { useSelector, useDispatch } from "react-redux";
+import { setFormData, setIsLoading, resetFormData } from "../store/formSlice";
 
 export default function Form() {
-  const [formData, setFormData] = useState({
-    nombre: "",
-    apellido: "",
-    email: "",
-  });
-  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
+  const dispatch = useDispatch();
+  const { formData, isLoading } = useSelector((state) => state.form);
+
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    dispatch(setFormData({ ...formData, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      setIsLoading(true);
+      dispatch(setIsLoading(true));
       const response = await fetch("/api/submitForm", {
         method: "POST",
         headers: {
@@ -32,17 +29,18 @@ export default function Form() {
       });
 
       if (response.ok) {
-        setIsLoading(false);
+        dispatch(setIsLoading(false));
         console.log("Document successfully written!");
         const { id } = await response.json();
         console.log("Document ID: ", id);
+        dispatch(resetFormData());
         router.push("/");
       } else {
-        setIsLoading(false);
+        dispatch(setIsLoading(false));
         throw new Error("Failed to submit form");
       }
     } catch (error) {
-      setIsLoading(false);
+      dispatch(setIsLoading(false));
       console.error("Error submitting form: ", error);
     }
   };
